@@ -10,13 +10,13 @@ A library that enables value based enum behaviour using classes in flutter
 ```dart
 @EnumReflectable
 class CarType extends VNum<String> {
-  // Cases
+  /// Cases
   static final CarType sedan = CarType.define("sedan-value");
   static final CarType suv = CarType.define("suv-value");
   static final CarType truck = CarType.define("truck-value");
   static final CarType none = CarType.define("value-none");
 
-  // Constructors
+  /// Constructors
   CarType.define(String fromValue) : super.define(fromValue);
   factory CarType(String value) => VNum.fromValue(value,CarType);
 }
@@ -86,15 +86,15 @@ Define your enum with value of T type with following steps:
 ```dart
 @EnumReflectable
 class MyEnum extends VNum<T> {
-// Case Definition
+/// Case Definition
 static final MyEnum case1 = MyEnum.define(value1);
 static final MyEnum case2 = MyEnum.define(value2);
 
-// Used for defining cases
-  CarType.define(String fromValue) : super.define(fromValue);
+/// Used for defining cases
+  MyEnum.define(String fromValue) : super.define(fromValue);
 
-// Used for loading enum using value
-  factory CarType(String value) => VNum.fromValue(value,CarType);
+/// Used for loading enum using value
+  factory MyEnum(String value) => VNum.fromValue(value,MyEnum);
 }
 ```
 
