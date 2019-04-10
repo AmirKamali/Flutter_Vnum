@@ -2,13 +2,13 @@ import 'package:vnum/vnum.dart';
 
 @VnumDefinition
 class CarType extends Vnum<String> {
-  static final CarType sedan = CarType.define("sedan-value");
-  static final CarType suv = CarType.define("suv-value");
-  static final CarType truck = CarType.define("truck-value");
-  static final CarType none = CarType.define("value-none");
+  static const CarType sedan = const CarType.define("sedan-value");
+  static const CarType suv = const CarType.define("suv-value");
+  static const CarType truck = const CarType.define("truck-value");
+  static const CarType none = const CarType.define("value-none");
 
   /// Constructors
-  CarType.define(String fromValue) : super.define(fromValue);
+  const CarType.define(String fromValue) : super.define(fromValue);
   factory CarType(String value) => Vnum.fromValue(value,CarType);
 
   /// Support for Json Serialization
@@ -18,10 +18,11 @@ class CarType extends Vnum<String> {
 
 @VnumDefinition
 class Fruit extends Vnum<int> {
-  static final Fruit apple = Fruit.define(1);
-  static final Fruit orange = Fruit.define(2);
-  static final Fruit banana = Fruit.define(3);
-  Fruit.define(int fromValue) : super.define(fromValue);
+  static const Fruit apple = const Fruit.define(1);
+  static const Fruit orange = const Fruit.define(2);
+  static const Fruit banana = const Fruit.define(3);
+  
+  const Fruit.define(int fromValue) : super.define(fromValue);
   factory Fruit(int value) => Vnum.fromValue(value,Fruit);
 
   String color(){

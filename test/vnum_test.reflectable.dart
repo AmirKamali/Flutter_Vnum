@@ -47,19 +47,16 @@ final _data = <r.Reflectable, r.ReflectorData>{
         new r.GenericClassMirrorImpl(
             r"Vnum",
             r"vnum.Vnum",
-            7,
+            519,
             1,
             const prefix0.VnumTypeReflectable(),
-            const <int>[4, 19, 13, 16, 20, 21, 22, 23],
-            const <int>[13, 14, 15, 16, 17, 19, 18],
-            const <int>[],
+            const <int>[4, 19, 20, 13, 16, 21, 22, 23, 24],
+            const <int>[13, 14, 15, 16, 17, 20, 18],
+            const <int>[19],
             -1,
-            {},
+            {r"allCasesFor": () => prefix0.Vnum.allCasesFor},
             {},
             {
-              r"": (b) => () => b ? new prefix0.Vnum() : null,
-              r"define": (b) =>
-                  (value) => b ? new prefix0.Vnum.define(value) : null,
               r"fromValue": (b) => (value, baseType) =>
                   b ? new prefix0.Vnum.fromValue(value, baseType) : null,
               r"fromJson": (b) =>
@@ -69,20 +66,21 @@ final _data = <r.Reflectable, r.ReflectorData>{
             -1,
             const <int>[-1],
             null,
-            null, (o) {
-          return o is prefix0.Vnum && o is! prefix1.CarType;
-        }, const <int>[2], 1),
+            null,
+            (o) => false,
+            const <int>[2],
+            1),
         new r.TypeVariableMirrorImpl(r"T", r"vnum.Vnum.T",
             const prefix0.VnumTypeReflectable(), -1, 1, null)
       ],
       <m.DeclarationMirror>[
-        new r.VariableMirrorImpl(r"sedan", 33813, 0,
+        new r.VariableMirrorImpl(r"sedan", 33941, 0,
             const prefix0.VnumTypeReflectable(), 0, 0, 0, null, null),
-        new r.VariableMirrorImpl(r"suv", 33813, 0,
+        new r.VariableMirrorImpl(r"suv", 33941, 0,
             const prefix0.VnumTypeReflectable(), 0, 0, 0, null, null),
-        new r.VariableMirrorImpl(r"truck", 33813, 0,
+        new r.VariableMirrorImpl(r"truck", 33941, 0,
             const prefix0.VnumTypeReflectable(), 0, 0, 0, null, null),
-        new r.VariableMirrorImpl(r"none", 33813, 0,
+        new r.VariableMirrorImpl(r"none", 33941, 0,
             const prefix0.VnumTypeReflectable(), 0, 0, 0, null, null),
         new r.VariableMirrorImpl(r"value", 1029, 1,
             const prefix0.VnumTypeReflectable(), -1, -1, -1, null, null),
@@ -96,8 +94,8 @@ final _data = <r.Reflectable, r.ReflectorData>{
             const prefix0.VnumTypeReflectable(), 2, 0, 0, 8),
         new r.ImplicitGetterMirrorImpl(
             const prefix0.VnumTypeReflectable(), 3, 0, 0, 9),
-        new r.MethodMirrorImpl(r"define", 0, 0, -1, 0, 0, null, const <int>[0],
-            const prefix0.VnumTypeReflectable(), null),
+        new r.MethodMirrorImpl(r"define", 128, 0, -1, 0, 0, null,
+            const <int>[0], const prefix0.VnumTypeReflectable(), null),
         new r.MethodMirrorImpl(r"", 1, 0, -1, 0, 0, null, const <int>[1],
             const prefix0.VnumTypeReflectable(), null),
         new r.MethodMirrorImpl(r"fromJson", 1, 0, -1, 0, 0, null,
@@ -114,16 +112,18 @@ final _data = <r.Reflectable, r.ReflectorData>{
             const <int>[], const prefix0.VnumTypeReflectable(), null),
         new r.ImplicitGetterMirrorImpl(
             const prefix0.VnumTypeReflectable(), 4, -1, -1, 18),
+        new r.MethodMirrorImpl(r"allCasesFor", 4325394, 1, -1, 6, 7, null,
+            const <int>[5], const prefix0.VnumTypeReflectable(), null),
         new r.MethodMirrorImpl(r"toJson", 65538, 1, null, null, null, null,
             const <int>[], const prefix0.VnumTypeReflectable(), null),
-        new r.MethodMirrorImpl(r"", 128, 1, -1, 6, 1, null, const <int>[],
+        new r.MethodMirrorImpl(r"", 128, 1, -1, 8, 1, null, const <int>[],
             const prefix0.VnumTypeReflectable(), null),
-        new r.MethodMirrorImpl(r"define", 128, 1, -1, 6, 1, null,
-            const <int>[5], const prefix0.VnumTypeReflectable(), null),
-        new r.MethodMirrorImpl(r"fromValue", 1, 1, -1, 6, 1, null,
-            const <int>[6, 7], const prefix0.VnumTypeReflectable(), null),
-        new r.MethodMirrorImpl(r"fromJson", 1, 1, -1, 6, 1, null,
-            const <int>[8], const prefix0.VnumTypeReflectable(), null)
+        new r.MethodMirrorImpl(r"define", 128, 1, -1, 8, 1, null,
+            const <int>[6], const prefix0.VnumTypeReflectable(), null),
+        new r.MethodMirrorImpl(r"fromValue", 1, 1, -1, 8, 1, null,
+            const <int>[7, 8], const prefix0.VnumTypeReflectable(), null),
+        new r.MethodMirrorImpl(r"fromJson", 1, 1, -1, 8, 1, null,
+            const <int>[9], const prefix0.VnumTypeReflectable(), null)
       ],
       <m.ParameterMirror>[
         new r.ParameterMirrorImpl(
@@ -180,8 +180,20 @@ final _data = <r.Reflectable, r.ReflectorData>{
             15,
             const prefix0.VnumTypeReflectable(),
             -1,
-            7,
-            7,
+            9,
+            9,
+            null,
+            null,
+            null,
+            null),
+        new r.ParameterMirrorImpl(
+            r"object",
+            16390,
+            19,
+            const prefix0.VnumTypeReflectable(),
+            null,
+            null,
+            null,
             null,
             null,
             null,
@@ -189,7 +201,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         new r.ParameterMirrorImpl(
             r"value",
             6,
-            21,
+            22,
             const prefix0.VnumTypeReflectable(),
             null,
             -1,
@@ -201,7 +213,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         new r.ParameterMirrorImpl(
             r"value",
             6,
-            22,
+            23,
             const prefix0.VnumTypeReflectable(),
             null,
             -1,
@@ -213,7 +225,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         new r.ParameterMirrorImpl(
             r"baseType",
             16390,
-            22,
+            23,
             const prefix0.VnumTypeReflectable(),
             null,
             null,
@@ -225,7 +237,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         new r.ParameterMirrorImpl(
             r"json",
             16390,
-            23,
+            24,
             const prefix0.VnumTypeReflectable(),
             null,
             null,
@@ -242,6 +254,8 @@ final _data = <r.Reflectable, r.ReflectorData>{
         String,
         int,
         Type,
+        const m.TypeValue<List<prefix0.Vnum<dynamic>>>().type,
+        List,
         const r.FakeType(r"vnum.Vnum<T>"),
         Invocation
       ],

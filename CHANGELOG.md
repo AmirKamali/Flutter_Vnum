@@ -1,3 +1,7 @@
+## [1.1.1] - Performance improvement
+ * Add ```allCasesFor(<Type>)``` for iterating Vnums
+ * Update documentation
+
 ## [1.1.0] - Serialization Support
  * Serialization support has been added
  * Update documentation

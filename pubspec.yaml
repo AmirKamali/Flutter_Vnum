@@ -1,6 +1,6 @@
 name: vnum
 description: A library that enables value based enum behaviour using classes in flutter.
-version: 1.1.0
+version: 1.2.0
 author: Amir Kamali <Amir@Kamali.io>
 homepage: https://github.com/AmirKamali/Flutter_Vnum
 

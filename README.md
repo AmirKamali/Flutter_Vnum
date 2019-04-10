@@ -18,13 +18,13 @@ Some highlighted features:
 @VnumDefinition
 class CarType extends Vnum<String> {
   /// Cases
-  static final CarType sedan = CarType.define("sedan-value");
-  static final CarType suv = CarType.define("suv-value");
-  static final CarType truck = CarType.define("truck-value");
-  static final CarType none = CarType.define("unknown");
+  static const CarType sedan = const CarType.define("sedan-value");
+  static const CarType suv = const CarType.define("suv-value");
+  static const CarType truck = const CarType.define("truck-value");
+  static const CarType none = const CarType.define("unknown");
 
   /// Constructors
-  CarType.define(String fromValue) : super.define(fromValue);
+  const CarType.define(String fromValue) : super.define(fromValue);
   factory CarType(String value) => Vnum.fromValue(value,CarType);
 
   /// (optional) Add these constructors if serilization is supported
@@ -54,6 +54,10 @@ var nonExisting = CarType('rocket') /// returns null
 
 /// Vnum functions
 var color = car.color() /// returns "Green"
+
+/// Iterating cases
+var allCases = Vnum.allCasesFor(CarType);
+print(allCases.length); /// prints 4
 ```
 
 ### Comparison:
@@ -151,7 +155,7 @@ Define your Vnum with value of T type with following steps:
 
 * Add public constructors
 
-* Define your cases as ```static final``` with the same type of your Vnum
+* Define your cases as ```static const``` with the same type of your Vnum
 
 * If you need serialization support for your Vnum add ```toJson()``` and ```fromJson()``` constructor to your Vnum definition
 
@@ -161,8 +165,8 @@ import 'package:Vnum/Vnum.dart';
 @VnumDefinition
 class MyEnum extends Vnum<T> {
 /// Case Definition
-static final MyEnum case1 = MyEnum.define(value1);
-static final MyEnum case2 = MyEnum.define(value2);
+static const MyEnum case1 = const MyEnum.define(value1);
+static const MyEnum case2 = const MyEnum.define(value2);
 
 /// Used for defining cases
 MyEnum.define(String fromValue) : super.define(fromValue);

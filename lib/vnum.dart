@@ -15,16 +15,16 @@ const VnumDefinition = const VnumTypeReflectable();
 /// Generic class defined here
 @VnumDefinition
 @JsonSerializable()
-class Vnum<T> {
+abstract class Vnum<T> {
   final T value;
   const Vnum() : value = null;
 
   /// Returns an instance of Vnum with the provided value
   ///
-  /// Instances should be defined static final
+  /// Instances should be defined static const
   ///
   /// ```
-  /// static final MyVnum case1 = MyVnum.define("my value");
+  /// static const MyVnum case1 = const MyVnum.define("my value");
   /// ```
   const Vnum.define(this.value);
 
@@ -60,8 +60,8 @@ class Vnum<T> {
 
       var value = parameterValue as VariableMirror;
 
-      /// Ignore the property is not declared as static final
-      if (!value.isStatic || !value.isFinal) {
+      /// Ignore the property is not declared as static const
+      if (!value.isStatic || !value.isConst) {
         continue;
       }
       var staticParam = aMirror.invokeGetter(value.simpleName);
@@ -73,6 +73,41 @@ class Vnum<T> {
       }
     }
     return null;
+  }
+
+  /// Returns list of all cases in the Vnum
+ static List<Vnum>  allCasesFor(dynamic object ) {
+    List<Vnum> _result = [];
+    //Mirror the base type
+    ClassMirror aMirror = VnumDefinition.reflectType(object);
+
+    /// Get declerations
+    final declarations = aMirror.declarations;
+
+    /// Loop through variables and
+    for (var key in declarations.keys) {
+      /// Get info
+      var parameterValue = declarations[key];
+
+      /// Check if it is a variable definition
+      if (!(parameterValue is VariableMirror)) {
+        continue;
+      }
+
+      var value = parameterValue as VariableMirror;
+
+      /// Ignore the property is not declared as static const
+      if (!value.isStatic || !value.isConst) {
+        continue;
+      }
+      var staticParam = aMirror.invokeGetter(value.simpleName);
+      var enumLoaded = staticParam as Vnum;
+      if (enumLoaded != null) {
+        _result.add(enumLoaded);
+      }
+    }
+
+    return _result;
   }
 
   /// Support for Json Serialization

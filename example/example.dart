@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:vnum/vnum.dart';
 import 'example-types.dart';
 part 'example.g.dart';
 
@@ -25,11 +26,17 @@ void example() {
   print(scanTypeFetched.value); /// prints sedan-value
   print(scanTypeFetched == CarType.sedan); /// prints true
 
+  var unknownFruit = Fruit(99);
+  print(unknownFruit == null); /// prints true
+
+  /// Advanced Use
   var fruit = Fruit(3);
   print("banana has ${fruit.color()} color"); /// prints banana has Yellow color
 
-  var unknownFruit = Fruit(99);
-  print(unknownFruit == null); /// prints true
+  /// Iterating cases
+  var allCases = Vnum.allCasesFor(CarType);
+  print(allCases.length); /// prints 4
+
 
 }
 

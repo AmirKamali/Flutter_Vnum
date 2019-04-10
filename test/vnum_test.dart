@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:vnum/vnum.dart';
 import 'sample_response.dart';
 import 'test_types.dart';
 import 'vnum_test.reflectable.dart';
@@ -30,6 +31,7 @@ void main() {
     var sedansAreEqual = car1 == car3;
     expect(sedansAreEqual,true);
     expect(sedanIsNotTruck,true);
+    expect(Vnum.allCasesFor(CarType).length, 4);
 
   });
 
