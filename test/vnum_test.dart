@@ -7,20 +7,20 @@ import 'vnum_test.reflectable.dart';
 
 void main() {
   initializeReflectable();
-  test('verify vnums works!', () {
+  test('verify Vnum works!', () {
     final car1 = CarType.sedan;
     final car2 = CarType.truck;
     final car3 = CarType.sedan;
-
+    
 
     /// Check value read
     expect(car1.value, "sedan-value");
 
-    /// Check vnum with value
+    /// Check Vnum with value
     final car4 = CarType("truck-value");
     expect(car4, CarType.truck);
 
-    /// Check vnum returns null for invalid values 
+    /// Check Vnum returns null for invalid values 
     final car5 = CarType("truck-value2");
     expect(car5, null);
     

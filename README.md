@@ -8,17 +8,17 @@ A library that enables value based enum behaviour using classes in flutter
 
 
 ```dart
-@EnumReflectable
-class CarType extends VNum<String> {
+@VnumDefinition
+class CarType extends Vnum<String> {
   /// Cases
   static final CarType sedan = CarType.define("sedan-value");
   static final CarType suv = CarType.define("suv-value");
   static final CarType truck = CarType.define("truck-value");
-  static final CarType none = CarType.define("value-none");
+  static final CarType none = CarType.define("unknown");
 
   /// Constructors
   CarType.define(String fromValue) : super.define(fromValue);
-  factory CarType(String value) => VNum.fromValue(value,CarType);
+  factory CarType(String value) => Vnum.fromValue(value,CarType);
 }
 ```
 
@@ -27,6 +27,7 @@ class CarType extends VNum<String> {
 var car = CarType.sedan;
 var carValue = car.value;
 var carFromValue = CarType('suv-value');
+var nonExisting = CarType('rocket') /// returns null
 ```
 
 Comparison:
@@ -67,7 +68,7 @@ void main() {
 
 In your Vnum files:
 ```dart
-import 'package:vnum/vnum.dart';
+import 'package:Vnum/Vnum.dart';
 ```
 
 
@@ -75,17 +76,17 @@ import 'package:vnum/vnum.dart';
 
 Define your enum with value of T type with following steps:
 
-* Define your class which extends ```VNum<T>```
+* Define your class which extends ```Vnum<T>```
 
-* Add ```@EnumReflectable``` attribute to your class
+* Add ```@VnumDefinition``` attribute to your class
 
 * Add public constructors
 
-* Define your cases as ```static final``` with the same type of your vnum
+* Define your cases as ```static final``` with the same type of your Vnum
 
 ```dart
-@EnumReflectable
-class MyEnum extends VNum<T> {
+@VnumDefinition
+class MyEnum extends Vnum<T> {
 /// Case Definition
 static final MyEnum case1 = MyEnum.define(value1);
 static final MyEnum case2 = MyEnum.define(value2);
@@ -94,7 +95,7 @@ static final MyEnum case2 = MyEnum.define(value2);
   MyEnum.define(String fromValue) : super.define(fromValue);
 
 /// Used for loading enum using value
-  factory MyEnum(String value) => VNum.fromValue(value,MyEnum);
+  factory MyEnum(String value) => Vnum.fromValue(value,MyEnum);
 }
 ```
 

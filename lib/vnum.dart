@@ -2,32 +2,45 @@ library vnum;
 import 'package:reflectable/reflectable.dart';
 
 /// Define Reflectable with required capablities
-class EnumTypeReflectable extends Reflectable {
-  const EnumTypeReflectable()
+class VnumTypeReflectable extends Reflectable {
+  const VnumTypeReflectable()
       : super(invokingCapability, typeCapability, reflectedTypeCapability);
 }
 
-/// Define Reflectable
-const EnumReflectable = const EnumTypeReflectable();
+/// Define Reflectable attribute
+const VnumDefinition = const VnumTypeReflectable();
 
 /// Generic class defined here
-@EnumReflectable
-class VNum<T> {
+@VnumDefinition
+class Vnum<T> {
   final T value;
-  const VNum() : value = null;
+  const Vnum() : value = null;
 
-  /// Define new cases using this constructor as final static variables
-  const VNum.define(this.value);
+  /// Returns an instance of Vnum with the provided value
+  /// 
+  /// Instances should be defined static final
+  /// 
+  /// ```
+  /// static final MyVnum case1 = MyVnum.define("my value");
+  /// ```
+  const Vnum.define(this.value);
 
-  /// Factory constructor Enum using default value
-  factory VNum.fromValue(T value, dynamic baseType) {
+  /// Returns an instance of Vnum if any of Vnum values matches the provided value
+  /// 
+  /// Returns null if there's no match 
+  /// 
+  /// ```
+  /// var myVnum = MyVnum("my value");
+  /// ```
+  /// 
+  factory Vnum.fromValue(T value, dynamic baseType) {
     return _fetchValue(value, baseType);
   }
 
   /// Find value through reflection, in case of no item, will return null
   static dynamic _fetchValue(dynamic rawValue, dynamic baseType) {
     //Mirror the base type
-    ClassMirror aMirror = EnumReflectable.reflectType(baseType);
+    ClassMirror aMirror = VnumDefinition.reflectType(baseType);
     
     /// Get declerations
     final declarations = aMirror.declarations;
@@ -48,7 +61,7 @@ class VNum<T> {
         continue;
       }
       var staticParam = aMirror.invokeGetter(value.simpleName);
-      var enumLoaded = staticParam as VNum;
+      var enumLoaded = staticParam as Vnum;
 
       /// Return if any property has a same value provided
       if (enumLoaded != null && enumLoaded.value == rawValue) {
@@ -59,6 +72,6 @@ class VNum<T> {
   }
 
   /// Overriden the == operator
-  bool operator ==(o) => o is VNum<T> && o.value == value;
+  bool operator ==(o) => o is Vnum<T> && o.value == value;
   int get hashCode => value.hashCode;
 }

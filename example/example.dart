@@ -1,6 +1,6 @@
 import 'example-types.dart';
 
-/// This is example use of vnum in dart, initializeReflectable()
+/// This is example use of Vnum in dart, initializeReflectable()
 /// add  initializeReflectable() the main() of your application
 /// if you are getting a undefined_function error, run
 /// flutter packages pub run build_runner build example --delete-conflicting-outputs
