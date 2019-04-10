@@ -1,7 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:reflectable/reflectable.dart';
+import 'sample_response.dart';
 import 'test_types.dart';
 import 'vnum_test.reflectable.dart';
+import 'dart:convert';
 
 
 
@@ -31,4 +32,24 @@ void main() {
     expect(sedanIsNotTruck,true);
 
   });
+
+
+ test('Vnum deserialization ints', () {
+
+   /// Mock Response
+   final jsonString = '{"carType":"suv-value"}';
+
+   /// Decode
+   var decodedData = json.decode(jsonString);
+   SampleResponse response = SampleResponse.fromJson(decodedData);
+
+   /// Verify
+   expect(response.carType, CarType.suv);
+
+   /// Serialize again
+   var serialized = json.encode(response);
+
+   /// Make sure generated string is the same as original
+   expect(jsonString, serialized);
+ });
 }

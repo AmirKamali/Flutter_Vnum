@@ -1,6 +1,13 @@
 # Vnum
 
-A library that enables value based enum behaviour using classes in flutter
+Vnum or Value based Enum is a library that enables enum behaviour in your code using classes in flutter with more fun!.
+
+Some highlighted features:
+
+* Easy define and use your cases
+* Memory Efficient
+* Supports Serialization / Deserialization
+* Support for functions inside your Vnums
 
 
 
@@ -19,6 +26,22 @@ class CarType extends Vnum<String> {
   /// Constructors
   CarType.define(String fromValue) : super.define(fromValue);
   factory CarType(String value) => Vnum.fromValue(value,CarType);
+
+  /// (optional) Add these constructors if serilization is supported
+  dynamic toJson() => this.value;
+  factory CarType.fromJson(dynamic json) => CarType(json);
+
+  /// Extend your Vnums
+  String color(){
+    if (value == CarType.sedan.value) {
+      return "Green";
+    }else if (value == CarType.suv.value) {
+      return "Orange";
+    }else if (value == CarType.truck.value) {
+      return "Yellow";
+    }
+    return "Unknown";
+  }
 }
 ```
 
@@ -28,32 +51,79 @@ var car = CarType.sedan;
 var carValue = car.value;
 var carFromValue = CarType('suv-value');
 var nonExisting = CarType('rocket') /// returns null
+
+/// Vnum functions
+var color = car.color() /// returns "Green"
 ```
 
-Comparison:
+### Comparison:
 ```dart
 var sedan = CarType.sedan;
 var truck = CarType.truck
 print(sedan == truck);
 ```
+### Class member usage:
+```dart
+@JsonSerializable()
+class SampleResponse {
+  
+  @JsonKey(name: "carType")
+  CarType carType;
 
+  SampleResponse();
+  factory SampleResponse.fromJson(Map<String, dynamic> json) =>
+      _$SampleResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$SampleResponseToJson(this);
+}
+```
+### Deserializiation:
+```dart
+final jsonString = '{"carType":"suv-value"}';
+
+/// Deserialize Json String
+var decodedData = json.decode(jsonString);
+SampleResponse response = SampleResponse.fromJson(decodedData);
+
+print(response.carType); /// CarType.suv;
+```
+
+### Serialization:
+```dart
+var serialized = json.encode(response);
+print(serialized); /// prints {"carType":"suv-value"}
+```
 
 
 #
 ## Installation:
-Add following reflectable, build_runner dependencies:
+Add following dependencies in your pubspec.yaml file:
 
 ```yaml
 dependencies:
   flutter:
     sdk: flutter
-  reflectable: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^1.0.0
+  reflectable: ^2.0.10+1
+  json_serializable: ^2.0.0
   ```
+
+Add a file ```build.yaml``` to your project's root folder or update the extisting file with the following code to your build.
+
+```yaml
+targets:
+  $default:
+    builders:
+      reflectable:
+        generate_for:
+          - lib/main.dart
+          - test/**_test.dart
+        options:
+          formatted: true
+```
 
 Add following lines to your main.dart add the following imports:
 
@@ -65,16 +135,15 @@ void main() {
   initializeReflectable();
 }
 ```
+if you run ```packages pub run build_runner build```, you should have no build problems by now and your project is ready for using Vnum!
 
-In your Vnum files:
-```dart
-import 'package:Vnum/Vnum.dart';
-```
 
 
 ## Definition:
 
-Define your enum with value of T type with following steps:
+Define your Vnum with value of T type with following steps:
+
+* Import Vnum reference ```package:Vnum/Vnum.dart```
 
 * Define your class which extends ```Vnum<T>```
 
@@ -84,7 +153,11 @@ Define your enum with value of T type with following steps:
 
 * Define your cases as ```static final``` with the same type of your Vnum
 
+* If you need serialization support for your Vnum add ```toJson()``` and ```fromJson()``` constructor to your Vnum definition
+
 ```dart
+import 'package:Vnum/Vnum.dart';
+
 @VnumDefinition
 class MyEnum extends Vnum<T> {
 /// Case Definition
@@ -92,10 +165,14 @@ static final MyEnum case1 = MyEnum.define(value1);
 static final MyEnum case2 = MyEnum.define(value2);
 
 /// Used for defining cases
-  MyEnum.define(String fromValue) : super.define(fromValue);
+MyEnum.define(String fromValue) : super.define(fromValue);
 
 /// Used for loading enum using value
-  factory MyEnum(String value) => Vnum.fromValue(value,MyEnum);
+factory MyEnum(String value) => Vnum.fromValue(value,MyEnum);
+
+/// (optional) Support for serialization/deserialization
+dynamic toJson() => this.value;
+factory MyEnum.fromJson(dynamic json) => MyEnum(json);
 }
 ```
 
@@ -109,7 +186,3 @@ Use the following command in your terminal to generate reflection codes for your
 
 Reflectable documentation: https://github.com/dart-lang/reflectable
 
-
-### For implementation:
-
-* Json Serialization

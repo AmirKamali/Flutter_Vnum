@@ -1,3 +1,7 @@
+## [1.1.0] - Serialization Support
+ * Serialization support has been added
+ * Update documentation
+
 ## [1.0.2] - Unify keywords
  * ```VNum``` has been renamed to ```Vnum```
  * ```@EnumReflectable``` has been renamed to ```@VnumDefinition```

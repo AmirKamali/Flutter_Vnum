@@ -1,5 +1,7 @@
 library vnum;
+
 import 'package:reflectable/reflectable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 /// Define Reflectable with required capablities
 class VnumTypeReflectable extends Reflectable {
@@ -12,27 +14,28 @@ const VnumDefinition = const VnumTypeReflectable();
 
 /// Generic class defined here
 @VnumDefinition
+@JsonSerializable()
 class Vnum<T> {
   final T value;
   const Vnum() : value = null;
 
   /// Returns an instance of Vnum with the provided value
-  /// 
+  ///
   /// Instances should be defined static final
-  /// 
+  ///
   /// ```
   /// static final MyVnum case1 = MyVnum.define("my value");
   /// ```
   const Vnum.define(this.value);
 
   /// Returns an instance of Vnum if any of Vnum values matches the provided value
-  /// 
-  /// Returns null if there's no match 
-  /// 
+  ///
+  /// Returns null if there's no match
+  ///
   /// ```
   /// var myVnum = MyVnum("my value");
   /// ```
-  /// 
+  ///
   factory Vnum.fromValue(T value, dynamic baseType) {
     return _fetchValue(value, baseType);
   }
@@ -41,21 +44,22 @@ class Vnum<T> {
   static dynamic _fetchValue(dynamic rawValue, dynamic baseType) {
     //Mirror the base type
     ClassMirror aMirror = VnumDefinition.reflectType(baseType);
-    
+
     /// Get declerations
     final declarations = aMirror.declarations;
 
-    /// Loop through variables and 
+    /// Loop through variables and
     for (var key in declarations.keys) {
       /// Get info
       var parameterValue = declarations[key];
 
       /// Check if it is a variable definition
-      if (!(parameterValue is VariableMirror)){
+      if (!(parameterValue is VariableMirror)) {
         continue;
       }
-      
+
       var value = parameterValue as VariableMirror;
+
       /// Ignore the property is not declared as static final
       if (!value.isStatic || !value.isFinal) {
         continue;
@@ -70,6 +74,10 @@ class Vnum<T> {
     }
     return null;
   }
+
+  /// Support for Json Serialization
+  dynamic toJson() => this.value;
+  factory Vnum.fromJson(dynamic json) => Vnum.fromValue(json, Vnum);
 
   /// Overriden the == operator
   bool operator ==(o) => o is Vnum<T> && o.value == value;
