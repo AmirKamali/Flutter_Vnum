@@ -1,6 +1,6 @@
 # Vnum
 
-Vnum or Value based Enum is a library that enables enum behaviour in your code using classes in flutter with more fun!.
+Vnum or Value based Enum is a [Flutter pub library](https://pub.dev/packages/vnum) that enables enum behaviour in your code using classes in flutter with more fun!.
 
 Some highlighted features:
 

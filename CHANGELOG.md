@@ -1,3 +1,9 @@
+## [1.2.2] - Update dependencies
+ * Update dependencies
+
+## [1.2.0] - Improve code
+ * Fix issues
+
 ## [1.1.1] - Performance improvement
  * Add ```allCasesFor(<Type>)``` for iterating Vnums
  * Update documentation
