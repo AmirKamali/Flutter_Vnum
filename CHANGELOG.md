@@ -1,5 +1,9 @@
+## [1.2.4] - Update dependencies
+ * Update version
+
 ## [1.2.3] - Update dependencies
  * Update dependency json_serializable
+
 
 ## [1.2.2] - Update dependencies
  * Update dependencies
