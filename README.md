@@ -106,13 +106,14 @@ Add following dependencies in your pubspec.yaml file:
 dependencies:
   flutter:
     sdk: flutter
+  reflectable: ^2.0.10+1
+  json_annotation: ^3.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^1.0.0
-  reflectable: ^2.0.10+1
-  json_serializable: ^2.0.0
+  json_serializable: ^3.2.0
   ```
 
 Add a file ```build.yaml``` to your project's root folder or update the extisting file with the following code to your build.
@@ -189,4 +190,6 @@ Use the following command in your terminal to generate reflection codes for your
 ```packages pub run build_runner build --delete-conflicting-outputs```
 
 Reflectable documentation: https://github.com/dart-lang/reflectable
+
+Json Serialization documentation: https://pub.dev/packages/json_serializable
 
