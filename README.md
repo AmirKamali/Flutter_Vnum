@@ -106,14 +106,14 @@ Add following dependencies in your pubspec.yaml file:
 dependencies:
   flutter:
     sdk: flutter
-  reflectable: ^2.0.10+1
-  json_annotation: ^3.0.0
+  reflectable: any
+  json_annotation: any
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^1.0.0
-  json_serializable: ^3.2.0
+  build_runner: any
+  json_serializable: any
   ```
 
 Add a file ```build.yaml``` to your project's root folder or update the extisting file with the following code to your build.

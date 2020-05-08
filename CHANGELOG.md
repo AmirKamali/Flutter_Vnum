@@ -1,3 +1,6 @@
+## [1.2.5] - Update dependencies
+ * Update version
+
 ## [1.2.4] - Update dependencies
  * Update version
 
