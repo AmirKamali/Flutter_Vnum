@@ -140,7 +140,7 @@ void main() {
   initializeReflectable();
 }
 ```
-if you run ```packages pub run build_runner build```, you should have no build problems by now and your project is ready for using Vnum!
+if you run ```flutter packages pub run build_runner build```, you should have no build problems by now and your project is ready for using Vnum!
 
 
 
@@ -187,7 +187,7 @@ Vnum is based on Dart Reflection and requires generating codes:
 
 Use the following command in your terminal to generate reflection codes for your project
 
-```packages pub run build_runner build --delete-conflicting-outputs```
+```flutter packages pub run build_runner build --delete-conflicting-outputs```
 
 Reflectable documentation: https://github.com/dart-lang/reflectable
 
