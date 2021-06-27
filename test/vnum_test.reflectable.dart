@@ -87,13 +87,13 @@ final _data = <r.Reflectable, r.ReflectorData>{
         new r.MethodMirrorImpl(r"toJson", 65538, 0, null, null, null, null,
             const <int>[], const prefix0.VnumTypeReflectable(), null),
         new r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 0, 0, 0, 6),
+            const prefix0.VnumTypeReflectable(), 0, 0),
         new r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 1, 0, 0, 7),
+            const prefix0.VnumTypeReflectable(), 1, 0),
         new r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 2, 0, 0, 8),
+            const prefix0.VnumTypeReflectable(), 2, 0),
         new r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 3, 0, 0, 9),
+            const prefix0.VnumTypeReflectable(), 3, 0),
         new r.MethodMirrorImpl(r"define", 128, 0, -1, 0, 0, null,
             const <int>[0], const prefix0.VnumTypeReflectable(), null),
         new r.MethodMirrorImpl(r"", 1, 0, -1, 0, 0, null, const <int>[1],
@@ -111,7 +111,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
         new r.MethodMirrorImpl(r"runtimeType", 131075, null, -1, 5, 5, null,
             const <int>[], const prefix0.VnumTypeReflectable(), null),
         new r.ImplicitGetterMirrorImpl(
-            const prefix0.VnumTypeReflectable(), 4, -1, -1, 18),
+            const prefix0.VnumTypeReflectable(), 4, -1),
         new r.MethodMirrorImpl(r"allCasesFor", 4325394, 1, -1, 6, 7, null,
             const <int>[5], const prefix0.VnumTypeReflectable(), null),
         new r.MethodMirrorImpl(r"toJson", 65538, 1, null, null, null, null,
@@ -274,7 +274,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
       [])
 };
 
-final _memberSymbolMap = null;
+final dynamic _memberSymbolMap = null;
 
 initializeReflectable() {
   r.data = _data;
