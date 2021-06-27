@@ -64,7 +64,7 @@ void serializationExample() {
 class SampleResponse {
   
   @JsonKey(name: "carType")
-  CarType carType;
+  CarType? carType;
 
   SampleResponse();
   factory SampleResponse.fromJson(Map<String, dynamic> json) =>

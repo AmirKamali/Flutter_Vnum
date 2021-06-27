@@ -16,7 +16,7 @@ const VnumDefinition = const VnumTypeReflectable();
 @VnumDefinition
 @JsonSerializable()
 abstract class Vnum<T> {
-  final T value;
+  final T? value;
   const Vnum() : value = null;
 
   /// Returns an instance of Vnum with the provided value
@@ -43,7 +43,7 @@ abstract class Vnum<T> {
   /// Find value through reflection, in case of no item, will return null
   static dynamic _fetchValue(dynamic rawValue, dynamic baseType) {
     //Mirror the base type
-    ClassMirror aMirror = VnumDefinition.reflectType(baseType);
+    ClassMirror aMirror = VnumDefinition.reflectType(baseType) as ClassMirror;
 
     /// Get declerations
     final declarations = aMirror.declarations;
@@ -58,14 +58,14 @@ abstract class Vnum<T> {
         continue;
       }
 
-      var value = parameterValue as VariableMirror;
+      var value = parameterValue;
 
       /// Ignore the property is not declared as static const
       if (!value.isStatic || !value.isConst) {
         continue;
       }
       var staticParam = aMirror.invokeGetter(value.simpleName);
-      var enumLoaded = staticParam as Vnum;
+      var enumLoaded = staticParam as Vnum?;
 
       /// Return if any property has a same value provided
       if (enumLoaded != null && enumLoaded.value == rawValue) {
@@ -79,7 +79,7 @@ abstract class Vnum<T> {
  static List<Vnum>  allCasesFor(dynamic object ) {
     List<Vnum> _result = [];
     //Mirror the base type
-    ClassMirror aMirror = VnumDefinition.reflectType(object);
+    ClassMirror aMirror = VnumDefinition.reflectType(object) as ClassMirror;
 
     /// Get declerations
     final declarations = aMirror.declarations;
@@ -94,14 +94,14 @@ abstract class Vnum<T> {
         continue;
       }
 
-      var value = parameterValue as VariableMirror;
+      var value = parameterValue;
 
       /// Ignore the property is not declared as static const
       if (!value.isStatic || !value.isConst) {
         continue;
       }
       var staticParam = aMirror.invokeGetter(value.simpleName);
-      var enumLoaded = staticParam as Vnum;
+      var enumLoaded = staticParam as Vnum?;
       if (enumLoaded != null) {
         _result.add(enumLoaded);
       }

@@ -8,7 +8,7 @@ part 'sample_response.g.dart';
 class SampleResponse {
   
   @JsonKey(name: "carType")
-  CarType carType;
+  CarType? carType;
 
   SampleResponse();
   factory SampleResponse.fromJson(Map<String, dynamic> json) =>
