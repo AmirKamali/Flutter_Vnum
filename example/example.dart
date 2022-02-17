@@ -66,7 +66,10 @@ class SampleResponse {
   @JsonKey(name: "carType")
   CarType carType;
 
-  SampleResponse();
+  SampleResponse(
+    this.carType,
+  );
+
   factory SampleResponse.fromJson(Map<String, dynamic> json) =>
       _$SampleResponseFromJson(json);
   Map<String, dynamic> toJson() => _$SampleResponseToJson(this);

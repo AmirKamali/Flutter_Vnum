@@ -9,7 +9,7 @@ class CarType extends Vnum<String> {
 
   /// Constructors
   const CarType.define(String fromValue) : super.define(fromValue);
-  factory CarType(String value) => Vnum.fromValue(value,CarType);
+  factory CarType(String value) => Vnum.fromValue(value,CarType) as CarType;
 
   /// Support for Json Serialization
   dynamic toJson() => this.value;
@@ -23,7 +23,7 @@ class Fruit extends Vnum<int> {
   static const Fruit banana = const Fruit.define(3);
   
   const Fruit.define(int fromValue) : super.define(fromValue);
-  factory Fruit(int value) => Vnum.fromValue(value,Fruit);
+  factory Fruit(int value) => Vnum.fromValue(value,Fruit) as Fruit;
 
   String color(){
     if (value == Fruit.apple.value) {
