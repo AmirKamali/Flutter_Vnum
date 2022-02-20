@@ -9,9 +9,5 @@ class CarType extends Vnum<String> {
 
   /// Constructors
   const CarType.define(String fromValue) : super.define(fromValue);
-  factory CarType(String value) => Vnum.fromValue(value,CarType);
-
-  /// Json
-  dynamic toJson() => this.value;
-  factory CarType.fromJson(dynamic json) => CarType(json);
+  factory CarType(String value) => Vnum.fromValue(value,CarType) as CarType;
 }
