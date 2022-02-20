@@ -71,7 +71,7 @@ abstract class Vnum<T> {
         return enumLoaded;
       }
     }
-    throw Exception("The provided value is not defined in the enum");
+    throw VnumValueException(T, baseType);
   }
 
   /// Returns list of all cases in the Vnum
@@ -116,4 +116,9 @@ abstract class Vnum<T> {
   /// Overriden the == operator
   bool operator ==(o) => o is Vnum<T> && o.value == value;
   int get hashCode => value.hashCode;
+}
+
+class VnumValueException<T> implements Exception {
+  final String message;
+  VnumValueException(T value, Type type) : message = value.toString() + " is not a valid value for " + type.toString();
 }
