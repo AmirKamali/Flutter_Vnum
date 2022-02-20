@@ -1,7 +1,6 @@
 library vnum;
 
 import 'package:reflectable/reflectable.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 /// Define Reflectable with required capablities
 class VnumTypeReflectable extends Reflectable {
@@ -13,7 +12,6 @@ const VnumDefinition = const VnumTypeReflectable();
 
 /// Generic class defined here
 @VnumDefinition
-@JsonSerializable()
 abstract class Vnum<T> {
   final T? value;
   const Vnum() : value = null;
@@ -108,10 +106,6 @@ abstract class Vnum<T> {
 
     return _result;
   }
-
-  /// Support for Json Serialization
-  dynamic toJson() => this.value;
-  factory Vnum.fromJson(dynamic json) => Vnum.fromValue(json, Vnum);
 
   /// Overriden the == operator
   bool operator ==(o) => o is Vnum<T> && o.value == value;
