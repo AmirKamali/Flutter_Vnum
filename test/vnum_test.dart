@@ -1,4 +1,4 @@
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 import 'package:vnum/vnum.dart';
 import 'sample_response.dart';
 import 'test_types.dart';
