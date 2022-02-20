@@ -35,12 +35,12 @@ abstract class Vnum<T> {
   /// var myVnum = MyVnum("my value");
   /// ```
   ///
-  factory Vnum.fromValue(T value, dynamic baseType) {
+  factory Vnum.fromValue(T value, Type baseType) {
     return _fetchValue<T>(value, baseType);
   }
 
   /// Find value through reflection, in case of no item, an exception will be thrown.
-  static Vnum<T> _fetchValue<T>(T rawValue, dynamic baseType) {
+  static Vnum<T> _fetchValue<T>(T rawValue, Type baseType) {
     //Mirror the base type
     ClassMirror aMirror = VnumDefinition.reflectType(baseType) as ClassMirror;
 
