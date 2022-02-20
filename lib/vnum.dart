@@ -5,8 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 /// Define Reflectable with required capablities
 class VnumTypeReflectable extends Reflectable {
-  const VnumTypeReflectable()
-      : super(invokingCapability, typeCapability, reflectedTypeCapability);
+  const VnumTypeReflectable() : super(invokingCapability, typeCapability, reflectedTypeCapability);
 }
 
 /// Define Reflectable attribute
@@ -16,7 +15,7 @@ const VnumDefinition = const VnumTypeReflectable();
 @VnumDefinition
 @JsonSerializable()
 abstract class Vnum<T> {
-  final T value;
+  final T? value;
   const Vnum() : value = null;
 
   /// Returns an instance of Vnum with the provided value
@@ -30,20 +29,20 @@ abstract class Vnum<T> {
 
   /// Returns an instance of Vnum if any of Vnum values matches the provided value
   ///
-  /// Returns null if there's no match
+  /// Throws an exception if there is no match.
   ///
   /// ```
   /// var myVnum = MyVnum("my value");
   /// ```
   ///
-  factory Vnum.fromValue(T value, dynamic baseType) {
-    return _fetchValue(value, baseType);
+  factory Vnum.fromValue(T value, Type baseType) {
+    return _fetchValue<T>(value, baseType);
   }
 
-  /// Find value through reflection, in case of no item, will return null
-  static dynamic _fetchValue(dynamic rawValue, dynamic baseType) {
+  /// Find value through reflection, in case of no item, an exception will be thrown.
+  static Vnum<T> _fetchValue<T>(T rawValue, Type baseType) {
     //Mirror the base type
-    ClassMirror aMirror = VnumDefinition.reflectType(baseType);
+    ClassMirror aMirror = VnumDefinition.reflectType(baseType) as ClassMirror;
 
     /// Get declerations
     final declarations = aMirror.declarations;
@@ -58,28 +57,28 @@ abstract class Vnum<T> {
         continue;
       }
 
-      var value = parameterValue as VariableMirror;
+      var value = parameterValue;
 
       /// Ignore the property is not declared as static const
       if (!value.isStatic || !value.isConst) {
         continue;
       }
       var staticParam = aMirror.invokeGetter(value.simpleName);
-      var enumLoaded = staticParam as Vnum;
+      var enumLoaded = staticParam as Vnum<T>;
 
       /// Return if any property has a same value provided
-      if (enumLoaded != null && enumLoaded.value == rawValue) {
+      if (enumLoaded.value == rawValue) {
         return enumLoaded;
       }
     }
-    return null;
+    throw VnumValueException(T, baseType);
   }
 
   /// Returns list of all cases in the Vnum
- static List<Vnum>  allCasesFor(dynamic object ) {
+  static List<Vnum> allCasesFor(dynamic object) {
     List<Vnum> _result = [];
     //Mirror the base type
-    ClassMirror aMirror = VnumDefinition.reflectType(object);
+    ClassMirror aMirror = VnumDefinition.reflectType(object) as ClassMirror;
 
     /// Get declerations
     final declarations = aMirror.declarations;
@@ -94,14 +93,14 @@ abstract class Vnum<T> {
         continue;
       }
 
-      var value = parameterValue as VariableMirror;
+      var value = parameterValue;
 
       /// Ignore the property is not declared as static const
       if (!value.isStatic || !value.isConst) {
         continue;
       }
       var staticParam = aMirror.invokeGetter(value.simpleName);
-      var enumLoaded = staticParam as Vnum;
+      var enumLoaded = staticParam as Vnum?;
       if (enumLoaded != null) {
         _result.add(enumLoaded);
       }
@@ -117,4 +116,9 @@ abstract class Vnum<T> {
   /// Overriden the == operator
   bool operator ==(o) => o is Vnum<T> && o.value == value;
   int get hashCode => value.hashCode;
+}
+
+class VnumValueException<T> implements Exception {
+  final String message;
+  VnumValueException(T value, Type type) : message = value.toString() + " is not a valid value for " + type.toString();
 }
